@@ -18,7 +18,9 @@ string vec_to_string(vector<int> v) {
 
   return output;
 }
-
+//largest_divisible_pairs using dynamic programming allows for previously calculated lists to be reused by future lists, if the for loop finds a previous vector that can be evenly divided into input[i] it can use that list as a base 
+//without having to worry about checking for divisibility, by removing the need to check for divisibility and the added operation of erasing an item from a vector, the time complexity of this version of the code is definitivly lower
+//though it may be difficult to notice given how relativly simple these programs are, as neither took any noticible amount of time to complete
 vector<int> largest_divisible_pairs(vector<int> input) {
   vector<vector<int>> table(input.size(), vector<int>(1));
   int b;
@@ -57,14 +59,14 @@ vector<int> largest_divisible_pairs(vector<int> input) {
 }
 
 int main() {
-  vector<int> values = {2, 6, 11, 22, 24 ,44, 48}; /////edit input here/////
+  vector<int> values = {2, 6, 5, 10, 20, 24, 40, 48, 80, 96, 192, 384, 400, 800, 1600, 3200}; /////edit input here/////
   sort(values.begin(), values.end());
   vector<int> ans = largest_divisible_pairs(values);
 
   cout << "input: " << vec_to_string(values) << endl;
   cout << "output: " << vec_to_string(ans) << endl << endl;
 
-  set<int> soln = {2, 6, 24, 48}; /////edit expected output here/////
+  set<int> soln = {5, 10, 20, 40, 80, 400, 800, 1600, 3200}; /////edit expected output here/////
 
   set<int> answerSet(ans.begin(), ans.end());
   assert(answerSet == soln);
